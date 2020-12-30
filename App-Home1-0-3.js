@@ -69,9 +69,6 @@ function loadHeader() {
 }
 
 
-
-
-
 const adrianProfile = document.getElementById('adrian-profile')
 adrianProfile.setAttribute('onClick', 'getTutorData("wR441Js4g6RM3u8tsDe3kmujsUs2")')
 
@@ -90,7 +87,7 @@ function getTutorData(tutorID) {
         const data = doc.data()
 
         loadTutorProfile(data, tutorID)
-        //loadButtons(data)
+        loadButtons(data)
         //loadSimilarTutors()
         //loadReviews()
         //loadAvailability(data)
@@ -134,6 +131,26 @@ function loadButtons(data) {
     //load report button
 
     //load message button
+    messageButton.addEventListener('click', () => {
+        openMessageModal(data)
+    })
 
     //load book session button
+}
+
+function openMessageModal(data) {
+    const messageButton = document.getElementById('message-button')
+    const messageModalClose = document.getElementById('message-modal-close')
+    const messageModal = document.getElementById('message-modal')
+    const messageModalHeader = document.getElementById('message-modal-header')
+
+    messageModal.style.display = 'flex'
+    var tutorsName = data.name 
+    const nameArray = tutorsName.split(" ")
+    const firstName = nameArray[0]
+    messageModalHeader.innerHTML = 'Message ' + firstName
+
+    messageModalClose.addEventListener('click', () => {
+        messageModal.style.display = 'none'
+    })
 }
